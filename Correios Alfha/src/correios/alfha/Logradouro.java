@@ -5,6 +5,8 @@
  */
 package correios.alfha;
 
+import java.util.Objects;
+
 /**
  *
  * @author Rodrigo
@@ -61,6 +63,31 @@ public class Logradouro {
     @Override
     public String toString() {
         return this.nomeLogradouro;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + Objects.hashCode(this.cep);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Logradouro other = (Logradouro) obj;
+        if (!Objects.equals(this.cep, other.cep)) {
+            return false;
+        }
+        return true;
     }
     
 }
