@@ -71,7 +71,9 @@ public class Logradouro {
 
 	@Override
 	public String toString() {
-		return this.nomeLogradouro+" "+this.cep + " " + this.bairro.getNomeBairro() + " " + this.cidade.getNomeCidade() + " " + this.estado.getSiglaEstado();
+		return "CEP: " + this.cep + "\n" + "Nome do logradouro: " + this.nomeLogradouro + "\n" + "Bairro: "
+				+ this.bairro.getNomeBairro() + "\n" + "Cidade: " + this.cidade.getNomeCidade() + "\n" + "Estado: "
+				+ this.estado.getNome();
 	}
 
 	@Override

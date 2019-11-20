@@ -61,10 +61,10 @@ public class CorreiosAlfha {
 				linha = leitor.readLine();
 				num_linha++;
 			}
-			leitor.close();
 			for (Logradouro l : logradouros.values()) {
 				System.out.println(l);
 			}
+			leitor.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
