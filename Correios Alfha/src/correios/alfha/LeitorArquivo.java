@@ -19,40 +19,42 @@ public class LeitorArquivo {
 
     public void carregarArquivo() throws IOException {
         BufferedReader leitor = new BufferedReader(new FileReader(diretorio));
-        String linha = leitor.readLine(), conteudo[], nomeCidade, nomeBairro, cep, nomeLogradouro, siglaEstado;
-        Logradouro logradouro;
-        Cidade cidade;
-        Estado estado;
-        Bairro bairro;
+        String linha = leitor.readLine(), conteudo[], nomeCidade= null, nomeBairro = null, cep=null, nomeLogradouro = null, siglaEstado[] = null;
+        Logradouro logradouro = null;
+        Cidade cidade = null;
+        Estado estado = null;
+        Bairro bairro = null;
         int num_linha = 1;
-        while (linha != null && !linha.endsWith("#")) {
+        while (linha != null) {
             if (num_linha != 1) {
-                conteudo = linha.split(" \\s+");
-                siglaEstado = conteudo[0];
+                conteudo = linha.split("\t");
+                
+                if(conteudo.length >= 4){
+                cep = conteudo[0];
                 nomeCidade = conteudo[1];
+                siglaEstado = conteudo[1].split("/");
                 nomeBairro = conteudo[2];
-                nomeLogradouro = conteudo[6];
-                if (conteudo.length == 8) {
-                    cep = conteudo[7];
-                } else {
-                    cep = conteudo[8];
-                }
-                estado = new Estado(siglaEstado, siglaEstado);
+                nomeLogradouro = conteudo[3];
+                estado = new Estado(siglaEstado[1], siglaEstado[1]);
                 cidade = new Cidade(nomeCidade, estado);
                 bairro = new Bairro(nomeBairro);
                 logradouro = new Logradouro(cep, cidade, estado, bairro, nomeLogradouro);
-
+                if(logradouro.getBairro().getNomeBairro().equals(nomeBairro)){
+                    bairro.cadastrarLogradouros(logradouro);
+                }
+                if (!this.logradouros.containsKey(cep)) {
+                    this.logradouros.put(cep, logradouro);
+                }                                               
+                
                 if (!this.cidades.containsKey(nomeCidade)) {
                     this.cidades.put(nomeCidade, cidade);
                 }
                 if (!this.bairros.containsKey(nomeBairro)) {
                     this.bairros.put(nomeBairro, bairro);
                 }
-                if (!this.logradouros.containsKey(cep)) {
-                    this.logradouros.put(cep, logradouro);
+                if (!this.estados.containsKey(siglaEstado[1])) {
+                    this.estados.put(siglaEstado[1], estado);
                 }
-                if (!this.estados.containsKey(siglaEstado)) {
-                    this.estados.put(siglaEstado, estado);
                 }
             }
             linha = leitor.readLine();

@@ -17,7 +17,7 @@ public class Bairro {
     // CONSTRUTOR
     public Bairro(String nomeBairro) {
         this.nomeBairro = nomeBairro;
-        this.logradouros = new HashMap();
+        this.logradouros = new HashMap<>();
     }
     
     // GETTER E SETTERS
@@ -34,6 +34,9 @@ public class Bairro {
         this.logradouros = logradouros;
     }
 
+    public void cadastrarLogradouros(Logradouro log){
+        logradouros.put(log.getCep(), log);
+    }
     @Override
     public String toString() {
         return this.nomeBairro;

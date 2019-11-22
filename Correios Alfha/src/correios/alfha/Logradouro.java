@@ -7,19 +7,16 @@ package correios.alfha;
 
 import java.util.Objects;
 
-/**
- *
- * @author Rodrigo
- */
+
 public class Logradouro {
-	// ATRIBUTOS
+	
 	private String cep;
 	private Cidade cidade;
 	private Estado estado;
 	private Bairro bairro;
 	private String nomeLogradouro;
 
-	// CONSTRUTOR
+	
 	public Logradouro(String cep, Cidade cidade, Estado estado, Bairro bairro, String nomeLogradouro) {
 		this.cep = cep;
 		this.cidade = cidade;
@@ -28,7 +25,7 @@ public class Logradouro {
 		this.nomeLogradouro = nomeLogradouro;
 	}
 
-	// GETTERS E SETTERS
+	
 	public String getCep() {
 		return cep;
 	}
