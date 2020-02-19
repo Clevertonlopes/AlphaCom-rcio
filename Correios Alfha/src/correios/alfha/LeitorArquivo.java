@@ -24,11 +24,8 @@ public class LeitorArquivo {
         Cidade cidade = null;
         Estado estado = null;
         Bairro bairro = null;
-        int num_linha = 1;
         while (linha != null) {
-            if (num_linha != 1) {
-                conteudo = linha.split("\t");
-                
+                conteudo = linha.split("\t");               
                 if(conteudo.length >= 4){
                 cep = conteudo[0];
                 nomeCidade = conteudo[1];
@@ -39,26 +36,23 @@ public class LeitorArquivo {
                 cidade = new Cidade(nomeCidade, estado);
                 bairro = new Bairro(nomeBairro);
                 logradouro = new Logradouro(cep, cidade, estado, bairro, nomeLogradouro);
-                if(logradouro.getBairro().getNomeBairro().equals(nomeBairro)){
-                    bairro.cadastrarLogradouros(logradouro);
-                }
                 if (!this.logradouros.containsKey(cep)) {
                     this.logradouros.put(cep, logradouro);
                 }                                               
-                
-                if (!this.cidades.containsKey(nomeCidade)) {
-                    this.cidades.put(nomeCidade, cidade);
-                }
+                bairro.setLogradouros(logradouros);
                 if (!this.bairros.containsKey(nomeBairro)) {
                     this.bairros.put(nomeBairro, bairro);
                 }
+                cidade.setBairros(bairros);
+                if (!this.cidades.containsKey(nomeCidade)) {
+                    this.cidades.put(nomeBairro, cidade);
+                }
+                estado.setCidades(cidades);
                 if (!this.estados.containsKey(siglaEstado[1])) {
                     this.estados.put(siglaEstado[1], estado);
                 }
-                }
             }
             linha = leitor.readLine();
-            num_linha++;
         }
         leitor.close();
     }

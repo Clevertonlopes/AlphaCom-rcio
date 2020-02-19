@@ -29,7 +29,7 @@ public class CorreiosAlfha {
     private void Menu() throws InvalidParameterSpecException {
         HashMap<String, Logradouro> logradourosCadastrados = null;
         int opc = -1;
-        String diretorio = "Arquivos//ceps.txt";
+        String diretorio = "C:\\Users\\Brenno\\Downloads\\AlphaCorreio-master\\Correios Alfha\\Arquivos\\ceps.txt";
         LeitorArquivo lerArquivo = new LeitorArquivo(diretorio);
         while (opc != 0) {
             System.out.println(""
@@ -76,9 +76,9 @@ public class CorreiosAlfha {
                     
                 case 2:
                     /*System.out.print("UF: ");
-                    String uf = input.next();
+                    String uf = input.next();*/
                     
-                    System.out.print("Cidade: ");
+                    /*System.out.print("Cidade: ");
                     String cidade = input.next();*/
                     
                     System.out.println("Bairro: ");
@@ -97,7 +97,9 @@ public class CorreiosAlfha {
                         } else{
                             logradourosCadastrados = b.getLogradouros();
                             for(Logradouro l : logradourosCadastrados.values()){
-                                System.out.println(l);
+                                if(l.getBairro().getNomeBairro().equals(bairro)){
+                                System.out.println(l);    
+                                }
                             }
                         }
                     } else {
